@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  proxy:
+    build: ./proxy/
+    depends_on:
+      - app
+    # ports:
+    #   - 80:80
+
+  app:
+    volumes:
+      - ./app/src:/app/src
+      - ./app/public:/app/public
+    build: ./app/
+    depends_on:
+      - api
+    # ports:
+    #   - 5000:5000
+
+  api:
+    build: ./api/
+    volumes:
+      - ./api:/api
+    depends_on:
+      - db
+    env_file:
+      - db.env
+    # ports:
+    #   - 5001:5001
+
+  db:
+    image: 'mysql:latest'
+    volumes:
+      - ./data/:/var/lib/mysql:rw
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    env_file:
+      - db.env
+    # ports:
+    #   - '3306:3306'
+
