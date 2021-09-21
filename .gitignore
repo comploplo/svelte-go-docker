@@ -116,7 +116,5 @@ dist
 
 
 data/
-
-.air.toml
 api/tmp/
 
