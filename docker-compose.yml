@@ -5,8 +5,8 @@ services:
     build: ./proxy/
     depends_on:
       - app
-    # ports:
-    #   - 80:80
+    ports:
+      - 80:80
 
   app:
     volumes:
@@ -15,8 +15,8 @@ services:
     build: ./app/
     depends_on:
       - api
-    # ports:
-    #   - 5000:5000
+    ports:
+      - 5000:5000
 
   api:
     build: ./api/
@@ -26,8 +26,8 @@ services:
       - db
     env_file:
       - db.env
-    # ports:
-    #   - 5001:5001
+    ports:
+      - 5001:5001
 
   db:
     image: 'mysql:latest'
@@ -36,6 +36,6 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     env_file:
       - db.env
-    # ports:
-    #   - '3306:3306'
+    ports:
+      - '3306:3306'
 

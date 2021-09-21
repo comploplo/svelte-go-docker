@@ -102,3 +102,21 @@ dist
 
 # TernJS port file
 .tern-port
+
+# FOR GO
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+
+data/
+
+.air.toml
+api/tmp/
+
